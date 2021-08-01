@@ -24,4 +24,5 @@ C++/SFML Flag generating tool.
  
  # Further information: 
 Flag type, heraldic elements and flag colors are randomly generated. It is possible to quite easily add more heraldic elements, but don't forget to change line 26 in the code after adding new elements!
+
 ![flaggen](https://user-images.githubusercontent.com/46265909/127778021-687d8eec-f3e8-4057-a72b-82274d70b4d1.png)
