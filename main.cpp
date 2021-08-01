@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	
 	srand(time(0));
 	flagtype = rand() % 3 + 1; /* 1 - monocolor, 2 - bicolor, 3 - tricolor  */
-	heraldry = rand() % 10; /* CHANGE THIS LINE IF YOU ADDED OR REMOVED HERALDRY IN THE ASSETS/GFX */
+	heraldry = rand() % 11; /* CHANGE THIS LINE IF YOU ADDED OR REMOVED HERALDRY IN THE ASSETS/GFX */
 	hv = rand() % 2 + 1; /*1 - horizontal, 2 - vertical */
 	
 	std::cout <<"[i] "<<flagtype<<" "<<heraldry<<" "<<hv<<std::endl;
