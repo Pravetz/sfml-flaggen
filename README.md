@@ -28,6 +28,7 @@ Flag type, heraldic elements and flag colors are randomly generated. It is possi
 
 # GENERATED FLAGS:
  Version 0.1:
+ 
 ![flaggen](https://user-images.githubusercontent.com/46265909/127778021-687d8eec-f3e8-4057-a72b-82274d70b4d1.png)
 
  Version 0.2:
