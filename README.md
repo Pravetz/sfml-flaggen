@@ -33,3 +33,6 @@ Flag type, heraldic elements and flag colors are randomly generated. It is possi
 
  Version 0.2:
  ![flaggen2](https://user-images.githubusercontent.com/46265909/128018294-40323dbe-dcf4-41be-8f8f-a865b1cfe60a.png)
+ 
+ Version 0.3:
+ ![flaggen3](https://user-images.githubusercontent.com/46265909/128609462-c5d553d4-c13d-4de9-8cef-0b4bbe4cb3c9.png)
