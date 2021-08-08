@@ -11,6 +11,7 @@ int flagtype;
 int heraldry;
 int hv;
 int triangle;
+int adh;
 int colored_heraldry = 0;
 
 int main(int argc, char** argv)
@@ -24,13 +25,13 @@ int main(int argc, char** argv)
 	
 	srand(time(0));
 	flagtype = rand() % 4 + 1; /* 1 - monocolor, 2 - bicolor, 3 - tricolor, 4 - four color  */
-	heraldry = rand() % 10; /* CHANGE THIS LINE IF YOU ADDED OR REMOVED HERALDRY IN THE ASSETS/GFX */
+	heraldry = rand() % 11; /* CHANGE THIS LINE IF YOU ADDED OR REMOVED HERALDRY IN THE ASSETS/GFX */
 	hv = rand() % 4 + 1; /*1 - horizontal, 2 - vertical, 3 - diagonal, 4 - reverse diagonal */
 	
 	
 	// USE THIS FOR DEBUGGING WHEN ADDING NEW FLAGTYPES
-	/*flagtype = 2;
-	heraldry = 1;
+	/*flagtype = 1;
+	heraldry = 10;
 	hv = 1;*/
 	
 	
@@ -62,6 +63,7 @@ int main(int argc, char** argv)
 	Texture dsector3;
 	Texture csector;
 	Texture csector2;
+	Texture csector3;
 	Texture csectorl;
 	Texture csectorl2;
 	Texture tsector;
@@ -73,6 +75,7 @@ int main(int argc, char** argv)
 	dsector3.loadFromFile("assets/gfx/dsectr3.png");
 	csector.loadFromFile("assets/gfx/csectr.png");
 	csector2.loadFromFile("assets/gfx/csectr2.png");
+	csector3.loadFromFile("assets/gfx/csectr3.png");
 	csectorl.loadFromFile("assets/gfx/csectrl.png");
 	csectorl2.loadFromFile("assets/gfx/csectrl2.png");
 	tsector.loadFromFile("assets/gfx/tsectr.png");
@@ -103,6 +106,10 @@ int main(int argc, char** argv)
 		triangle = rand() % 2;
 	}
 	
+	if(flagtype == 1 && heraldry >= 8){
+		adh = rand() % 2;
+	}
+	
 	///////////////////// POSITIONS /////////////////////////
 	
 	if (flagtype == 4 && hv == 1){		// FOUR COLORS
@@ -128,7 +135,7 @@ int main(int argc, char** argv)
 		s6.setPosition(225,0);			//
 	}
 	
-	if (flagtype == 4 && hv == 3 && heraldry != 8 && heraldry != 9){		// FOUR COLORS
+	if (flagtype == 4 && hv == 3 && heraldry != 8 && heraldry != 9 && heraldry != 10){		// FOUR COLORS
 		s.setTexture(dsector);			//
 		s1.setTexture(dsector3);		//
 		s2.setTexture(dsector3);		//
@@ -142,7 +149,7 @@ int main(int argc, char** argv)
 		s6.setPosition(300,200);		//
 	}
 	
-	if (flagtype == 4 && hv == 4 && heraldry != 8 && heraldry != 9){		// FOUR COLORS
+	if (flagtype == 4 && hv == 4 && heraldry != 8 && heraldry != 9 && heraldry != 10){		// FOUR COLORS
 		s.setTexture(dsector);			//
 		s1.setTexture(dsector3);		//
 		s2.setTexture(dsector3);		//
@@ -216,10 +223,37 @@ int main(int argc, char** argv)
 		s6.setPosition(0,200);			//
 	}
 	
+	if (flagtype == 4 && hv == 3 && heraldry == 10){		// FOUR COLORS + SALTIRE
+		s.setTexture(dsector);			//
+		s1.setTexture(csectorl);		//
+		s2.setTexture(csector3);		//
+		s6.setTexture(dsector);			//
+		
+		s6.rotate(180.f);				//
+		
+		s.setPosition(0,0);				//
+		s6.setPosition(300,200);		//
+	}
+	
+	if (flagtype == 4 && hv == 4 && heraldry == 10){		// FOUR COLORS + SALTIRE
+		s.setTexture(dsector);			//
+		s1.setTexture(csectorl);		//
+		s2.setTexture(csector3);		//
+		s6.setTexture(dsector);			//
+		
+		s.setScale(-1,1);				//
+		s6.setScale(-1,1);				//
+		
+		s6.rotate(180.f);				//
+		
+		s.setPosition(300,0);			//
+		s6.setPosition(0,200);			//
+	}
+	
 	/////////////////////////////////////////////////////
 	
 	
-	if (flagtype == 3 && hv == 2 && heraldry != 9 && heraldry != 8){		// TRICOLORS
+	if (flagtype == 3 && hv == 2 && heraldry != 8 && heraldry != 9 && heraldry != 10){		// TRICOLORS
 		s.setTexture(sector);			//
 		s1.setTexture(sector);			//
 		s2.setTexture(sector);			//
@@ -228,7 +262,15 @@ int main(int argc, char** argv)
 		s2.setPosition(200,0);			//
 	}
 	
-	if (flagtype == 3 && hv == 3 && heraldry != 8 && heraldry != 9){		// DIAGONAL TRICOLORS
+	if (flagtype == 3 && hv == 2 && heraldry == 10){		//
+		s.setTexture(sector);			//
+		s1.setTexture(csector3);		//
+		s2.setTexture(sector);			//
+		s.setPosition(0,0);				//
+		s2.setPosition(200,0);			//
+	}
+	
+	if (flagtype == 3 && hv == 3 && heraldry != 8 && heraldry != 9 && heraldry != 10){		// DIAGONAL TRICOLORS
 		s.setTexture(dsector);			//
 		s1.setTexture(dsector2);		//
 		s2.setTexture(dsector);			//
@@ -237,7 +279,7 @@ int main(int argc, char** argv)
 		s2.setPosition(300,200);		//
 	}
 	
-	if (flagtype == 3 && hv == 4 && heraldry != 8 && heraldry != 9){		// DIAGONAL TRICOLORS
+	if (flagtype == 3 && hv == 4 && heraldry != 8 && heraldry != 9 && heraldry != 10){		// DIAGONAL TRICOLORS
 		s.setTexture(dsector);			//
 		s1.setTexture(dsector2);		//
 		s2.setTexture(dsector);			//
@@ -268,6 +310,15 @@ int main(int argc, char** argv)
 		s2.setPosition(300,200);		//
 	}
 	
+	if (flagtype == 3 && hv == 3 && heraldry == 10){		// DIAGONAL TRICOLORS
+		s.setTexture(dsector);			//
+		s1.setTexture(csector3);		//
+		s2.setTexture(dsector);			//
+		s2.rotate(180.f);				//
+		s.setPosition(0,0);				//
+		s2.setPosition(300,200);		//
+	}
+	
 	if (flagtype == 3 && hv == 4 && heraldry == 8){		// DIAGONAL TRICOLORS
 		s.setTexture(dsector);			//
 		s1.setTexture(csector);			//
@@ -290,10 +341,27 @@ int main(int argc, char** argv)
 		s2.setPosition(0,200);			//
 	}
 	
-	if (flagtype == 3 && hv == 1 && heraldry != 9 && heraldry != 8){		//
+	if (flagtype == 3 && hv == 4 && heraldry == 10){		// DIAGONAL TRICOLORS
+		s.setTexture(dsector);			//
+		s1.setTexture(csector3);		//
+		s2.setTexture(dsector);			//
+		s.setScale(-1,1);				//
+		s2.setScale(-1,1);				//
+		s2.rotate(180.f);				//
+		s.setPosition(300,0);			//
+		s2.setPosition(0,200);			//
+	}
+	
+	if (flagtype == 3 && hv == 1 && heraldry != 8 && heraldry != 9 && heraldry != 10){		//
 		s3.setPosition(0,0);			//
 		s4.setPosition(0,67);			//
 		s5.setPosition(0,133);			//
+	}
+	
+	if (flagtype == 3 && hv == 1 && heraldry == 10){		//
+		s3.setPosition(0,0);			//
+		s5.setPosition(0,133);			//
+		s6.setTexture(csector3);		//
 	}
 	
 	if (flagtype == 2 && hv == 2){		// BICOLORS
@@ -380,9 +448,9 @@ int main(int argc, char** argv)
 		s2.setPosition(100,0);
 	}
 	
-	if (flagtype == 3 && hv == 2 && heraldry == 8){ 	// SPECIAL TRICOLOR SCALING
+	if (flagtype == 3 && hv == 2 && (heraldry == 8 || heraldry == 10)){ 	// SPECIAL TRICOLOR SCALING
 		sf::Vector2u size_flag = sector.getSize();		// FOR NORDIC CROSS ELEMENTS("9.png", "8.png")
-		s.setTexture(sector);
+		s.setTexture(sector);							// AND SALTIRE("10.png")
 		s2.setTexture(sector);
 		
 		float scale_x = size_flag.x / 2;
@@ -392,9 +460,9 @@ int main(int argc, char** argv)
 		s2.setPosition(150,0);
 	}
 	
-	if (flagtype == 3 && hv == 1 && heraldry == 8 || heraldry == 9){ 	// SPECIAL TRICOLOR SCALING
+	if (flagtype == 3 && hv == 1 && (heraldry == 8 || heraldry == 9 || heraldry == 10)){ 	// SPECIAL TRICOLOR SCALING
 		sf::Vector2u size_flag = sector2.getSize();						// FOR NORDIC CROSS ELEMENTS("9.png", "8.png")
-		
+																		// AND SALTIRE("10.png")
 		float scale_y = size_flag.y / 2;
 		s3.setScale(1, scale_y);
 		s5.setScale(1, scale_y);
@@ -426,6 +494,18 @@ int main(int argc, char** argv)
 	}
 	
 	///////////////////////////////////////////////////////////////
+	
+	if(flagtype == 1 && adh == 1){
+		if (heraldry == 8){
+				s.setTexture(nsector2);
+			}
+		if (heraldry == 9){
+				s.setTexture(nsector);
+			}
+		if (heraldry == 10){
+				s.setTexture(csector3);
+			}
+	}
 	
 	if(heraldry < 8 && triangle != 1){
 		fl_e.setPosition(130,75);
@@ -487,7 +567,7 @@ int main(int argc, char** argv)
 			std::cout<<"[i] stripe 3: "<<r<<" "<<g<<" "<<b<<endl;
 	}
 	
-	if(flagtype == 3 && hv == 1 && heraldry != 8 && heraldry != 9){
+	if(flagtype == 3 && hv == 1 && heraldry != 8 && heraldry != 9 && heraldry != 10){
 		s3.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
 			std::cout<<"[i] stripe 1: "<<r<<" "<<g<<" "<<b<<endl;
 		s4.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
@@ -520,6 +600,15 @@ int main(int argc, char** argv)
 		s5.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
 			std::cout<<"[i] stripe 2: "<<r<<" "<<g<<" "<<b<<endl;
 		ns.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
+			std::cout<<"[i] cross: "<<r<<" "<<g<<" "<<b<<endl;
+	}
+	
+	if(flagtype == 3 && hv == 1 && heraldry == 10){
+		s3.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
+			std::cout<<"[i] stripe 1: "<<r<<" "<<g<<" "<<b<<endl;
+		s5.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
+			std::cout<<"[i] stripe 2: "<<r<<" "<<g<<" "<<b<<endl;
+		s6.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
 			std::cout<<"[i] cross: "<<r<<" "<<g<<" "<<b<<endl;
 	}
 	
@@ -561,6 +650,10 @@ int main(int argc, char** argv)
 	if(flagtype == 1){
 		s6.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
 			std::cout<<"[i] color: "<<r<<" "<<g<<" "<<b<<endl;
+		if(adh == 1){
+				s.setColor(sf::Color( r = rand() % 256, g = rand() % 256, b = rand() % 256));
+					std::cout<<"[i] cross: "<<r<<" "<<g<<" "<<b<<endl;
+			}
 	}
 	
 	///////////////////////////////////////////////////////////////
@@ -631,6 +724,12 @@ int main(int argc, char** argv)
 		texture.draw(ns);
 	}
 	
+	if (flagtype == 3 && hv == 2 && heraldry == 10){
+		texture.draw(s);
+		texture.draw(s2);
+		texture.draw(s1);
+	}
+	
 	if (flagtype == 3 && hv == 1 && heraldry != 8 && heraldry != 9){
 		texture.draw(s3);
 		texture.draw(s4);
@@ -647,6 +746,12 @@ int main(int argc, char** argv)
 		texture.draw(s3);
 		texture.draw(s5);
 		texture.draw(ns);
+	}
+	
+	if (flagtype == 3 && hv == 1 && heraldry == 10){
+		texture.draw(s3);
+		texture.draw(s5);
+		texture.draw(s6);
 	}
 	
 	if (flagtype == 2 && (hv == 2 || hv == 3 || hv == 4)){
@@ -667,6 +772,9 @@ int main(int argc, char** argv)
 	
 	if (flagtype == 1){
 		texture.draw(s6);
+		if(adh == 1){
+				texture.draw(s);
+			}
 	}
 	
 	if(heraldry > 0){
